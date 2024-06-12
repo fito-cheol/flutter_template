@@ -6,6 +6,7 @@ plugins {
     id 'com.google.gms.google-services' version '4.3.15' apply false
 }
 
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {

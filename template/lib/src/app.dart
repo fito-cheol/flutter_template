@@ -1,5 +1,6 @@
 import 'package:template/src/views/firebase/todo.dart';
 import 'package:template/src/views/google/map.dart';
+import 'package:template/src/views/google/mapLocation.dart';
 import 'package:template/src/views/login_signup/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +55,8 @@ class MyApp extends StatelessWidget {
                 return const AxiosView();
               case MapSampleView.routeName:
                 return const MapSampleView();
+              case MapScreen.routeName:
+                return MapScreen();
               case TodoView.routeName:
                 return const TodoView();
               case RouteListView.routeName:
