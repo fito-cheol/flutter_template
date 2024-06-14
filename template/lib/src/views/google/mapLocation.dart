@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:google_places_flutter/model/prediction.dart';
 
 import 'dart:async';
 
@@ -20,6 +22,7 @@ class _MapScreenState extends State<MapScreen> {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
+  TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
@@ -73,17 +76,74 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        // CameraPosition(
-        //   target:
-        //       LatLng(_currentPosition!.latitude!, _currentPosition!.longitude!),
-        //   zoom: 15.0,
-        // ),
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
+      appBar: AppBar(
+        title: const Text('구글맵+현재위치'),
+      ),
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.hybrid,
+            initialCameraPosition: _kGooglePlex,
+            // CameraPosition(
+            //   target:
+            //       LatLng(_currentPosition!.latitude!, _currentPosition!.longitude!),
+            //   zoom: 15.0,
+            // ),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
+            },
+          ),
+          placesAutoCompleteTextField(),
+        ],
+      ),
+    );
+  }
+
+  placesAutoCompleteTextField() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: GooglePlaceAutoCompleteTextField(
+        textEditingController: controller,
+        googleAPIKey: "GOOGLE_API_KEY",
+        inputDecoration: InputDecoration(
+          hintText: "Search your location",
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+        ),
+        debounceTime: 400,
+        countries: ["in", "fr"],
+        isLatLngRequired: true,
+        getPlaceDetailWithLatLng: (Prediction prediction) {
+          print("placeDetails" + prediction.lat.toString());
         },
+
+        itemClick: (Prediction prediction) {
+          controller.text = prediction.description ?? "";
+          controller.selection = TextSelection.fromPosition(
+              TextPosition(offset: prediction.description?.length ?? 0));
+        },
+        seperatedBuilder: const Divider(),
+        containerHorizontalPadding: 10,
+
+        // OPTIONAL// If you want to customize list view item builder
+        itemBuilder: (context, index, Prediction prediction) {
+          return Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                const Icon(Icons.location_on),
+                const SizedBox(
+                  width: 7,
+                ),
+                Expanded(child: Text(prediction.description ?? ""))
+              ],
+            ),
+          );
+        },
+
+        isCrossBtnShown: true,
+
+        // default 600 ms ,
       ),
     );
   }
