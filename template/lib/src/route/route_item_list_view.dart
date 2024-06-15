@@ -3,6 +3,7 @@ import 'package:template/src/views/axios_view.dart';
 import 'package:template/src/views/firebase/todo.dart';
 import 'package:template/src/views/google/map.dart';
 import 'package:template/src/views/google/mapLocation.dart';
+import 'package:template/src/views/google/mapSearch.dart';
 import 'package:template/src/views/login_signup/login_singup_view.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,8 @@ class RouteListView extends StatelessWidget {
       RouteItem("세팅", SettingsViewWithProvider.routeName),
       RouteItem("Axios 테스트", AxiosView.routeName),
       RouteItem("구글맵", MapSampleView.routeName),
-      RouteItem("구글맵", MapScreen.routeName),
+      RouteItem("구글맵 위치이동", MapScreen.routeName),
+      RouteItem("구글맵 검색", MapSearchScreen.routeName),
       RouteItem("파이어베이스", TodoView.routeName),
     ],
   });
