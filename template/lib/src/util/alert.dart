@@ -5,11 +5,11 @@ Future<dynamic> alertDialog(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Done'),
-          content: Text('Add Success'),
+          title: const Text('Done'),
+          content: const Text('Add Success'),
           actions: <Widget>[
             TextButton(
-              child: Text('Ok'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.pop(context);
               },

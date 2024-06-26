@@ -3,7 +3,7 @@ import 'package:template/src/views/login_signup/login_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginSingupView extends StatefulWidget {
-  const LoginSingupView({Key? key}) : super(key: key);
+  const LoginSingupView({super.key});
   static const routeName = '/login_signup';
 
   @override
