@@ -44,3 +44,8 @@ app.*.map.json
 
 # env
 .env
+
+# 안드로이드 배포 key
+key.properties
+**/*.keystore
+**/*.jks
