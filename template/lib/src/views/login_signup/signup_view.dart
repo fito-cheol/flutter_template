@@ -1,4 +1,3 @@
-import 'package:template/src/model/user.dart';
 import 'package:flutter/material.dart';
 
 import '../../axios/auth.dart';
@@ -6,7 +5,7 @@ import '../../components/my_button.dart';
 import '../../components/my_textfield.dart';
 
 class SignupView extends StatefulWidget {
-  const SignupView({Key? key, required this.onTap}) : super(key: key);
+  const SignupView({super.key, required this.onTap});
   final Function()? onTap;
 
   static const routeName = '/signup';
@@ -91,7 +90,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(

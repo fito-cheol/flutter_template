@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart' as places;
 import 'package:location/location.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:template/src/components/googlePlaceSearch.dart';
 
 class MapSearchScreen extends StatefulWidget {
   const MapSearchScreen({super.key});
@@ -33,7 +34,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
         apiKey: apiKey,
         onError: onError, // call the onError function below
         mode: loc.Mode.overlay,
-        language: 'en', //you can set any language for search
+        language: 'kr', //you can set any language for search
         strictbounds: false,
         types: [],
         decoration: InputDecoration(
@@ -172,7 +173,11 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
           left: 10, // you can change place of search bar any where on the map
           child: ElevatedButton(
               onPressed: _handleSearch, child: const Text('search')),
-        )
+        ),
+        const Positioned(
+            top: 50,
+            left: 60, // you can change place of search bar any where on the map
+            child: GooglePlaceSearch())
       ]),
     );
   }

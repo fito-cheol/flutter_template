@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../components/my_button.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({Key? key, required this.onTap}) : super(key: key);
+  const LoginView({super.key, required this.onTap});
   final Function()? onTap;
 
   static const routeName = '/login';
